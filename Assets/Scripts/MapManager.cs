@@ -14,6 +14,7 @@ public class MapManager : MonoBehaviour {
 
     private float nextTime = 0;
     private float addTime = 4f;
+    private float BG_speed = 0.16f;
 
     private bool life = true;
     private bool start = true;
@@ -43,23 +44,32 @@ public class MapManager : MonoBehaviour {
         m_Player.GetComponent<Transform>().localScale = new Vector3(0.5f, 0.8f, 0.5f);
         m_Space_BG.GetComponent<Transform>().localScale = new Vector3(5.77f,11.54f,1);
 
+
+
     }
 
     void Update()
     {
         GameObject Player = null;
         GameObject Space_BG = null;
+        
         if(start == true)
          {
             //生成角色
             Player = GameObject.Instantiate(m_Player, m_Start_pos, Quaternion.identity) as GameObject;
             //生成太空
             Space_BG = GameObject.Instantiate(m_Space_BG, m_Space_pos, Quaternion.Euler(m_Space_rot))as GameObject;
-            
+            //Space_BG.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -BG_speed);
             Debug.Log("我出生啦");
             gaming = true;
             start = false;
          }
+
+        if(gaming == true)
+        {
+            //
+        }
+
         if(Time.time>nextTime)
         {
             //RockCreate

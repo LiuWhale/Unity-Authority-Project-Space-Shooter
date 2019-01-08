@@ -10,14 +10,11 @@ public class BoltMove : MonoBehaviour {
         m_Rigidbody = gameObject.GetComponent<Rigidbody>();
 
         //Debug.Log("time1:" + Time.time);
-        
-
+      
     }
     private void FixedUpdate()
     {
         m_Rigidbody.velocity = transform.forward * m_Speed;
         GameObject.Destroy(gameObject, 1f);
     }
-
-
 }

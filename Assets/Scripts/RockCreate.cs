@@ -47,6 +47,6 @@ public class RockCreate : MonoBehaviour {
         item.GetComponent<Transform>().tag = "Rock";
         item.GetComponent<Rigidbody>().useGravity = false;
         item.GetComponent<BoxCollider>().size = new Vector3(size_x*3,size_y*3,size_z*3);
-        
+        GameObject.Destroy(gameObject, 0.5f);
     }
 }

@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour {
     private float MAX_z = 7.4f;
     private float MIN_x = -2.7f;
     private float MIN_z = -1f;
-    private float speed = 0.16f;
+    private float speed = 0.1f;
     private float timescale = 0.20f;
     private float nextTime = 0.5f;    
 
@@ -117,7 +117,7 @@ public class GameController : MonoBehaviour {
         if ((UP || DOWN || LEFT || RIGHT)&& Time.time > nextTime)
         {                
                 item = GameObject.Instantiate(m_Bolt, m_ShotSpot.position, m_ShotSpot.rotation);
-          //  Debug.Log("time0:"+Time.time);
+                Debug.Log("time0:"+Time.time);
                 nextTime = Time.time+timescale;
         }
         PlayerMove();      

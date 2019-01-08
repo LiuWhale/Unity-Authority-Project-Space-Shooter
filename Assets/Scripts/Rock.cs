@@ -12,14 +12,15 @@ public class Rock : MonoBehaviour {
         rot = new Vector3(Random.Range(0, 90), Random.Range(0, 90), Random.Range(0, 90));
     }
 	
-	// Update is called once per frame
+
 	void Update () {
         m_Transform.Rotate(rot*Time.deltaTime);
+        GameObject.Destroy(gameObject, 10f);
 	}
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player"||other.tag == "Bolt")
         {
             Debug.Log("我是一个小小石头！bang！");
             GameObject.Destroy(gameObject, 0.5f);
