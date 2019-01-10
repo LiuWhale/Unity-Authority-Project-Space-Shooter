@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 UP = true;
-                m_Transform.SetPositionAndRotation(m_Transform.position, Quaternion.Euler(Up_rot));
+                //m_Transform.SetPositionAndRotation(m_Transform.position, Quaternion.Euler(Up_rot));
         }
             if (Input.GetKeyUp(KeyCode.UpArrow))
             {
@@ -68,7 +68,7 @@ public class GameController : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 DOWN = true;
-                m_Transform.SetPositionAndRotation(m_Transform.position, Quaternion.Euler(Down_rot));
+                //m_Transform.SetPositionAndRotation(m_Transform.position, Quaternion.Euler(Down_rot));
         }
             if (Input.GetKeyUp(KeyCode.DownArrow))
             {
@@ -108,18 +108,20 @@ public class GameController : MonoBehaviour {
             {
                 m_Player_x+=speed;
             }
-    
+
+            m_Transform.position = Vector3.Lerp(m_Transform.position, new Vector3(m_Player_x, 0, m_Player_z), 4 * Time.deltaTime);
+
+            if ((UP || DOWN || LEFT || RIGHT) && Time.time > nextTime)
+            {
+                item = GameObject.Instantiate(m_Bolt, m_Transform.position, m_ShotSpot.rotation);
+                Debug.Log("time0:" + Time.time);
+                nextTime = Time.time + timescale;
+            }
     }
 
-	void Update () {
-        m_Transform.position = Vector3.Lerp(m_Transform.position, new Vector3(m_Player_x, 0, m_Player_z), 4 * Time.deltaTime);
+    void Update () {
+       
         
-        if ((UP || DOWN || LEFT || RIGHT)&& Time.time > nextTime)
-        {                
-                item = GameObject.Instantiate(m_Bolt, m_ShotSpot.position, m_ShotSpot.rotation);
-                Debug.Log("time0:"+Time.time);
-                nextTime = Time.time+timescale;
-        }
         PlayerMove();      
     }
 }

@@ -40,6 +40,7 @@ public class RockCreate : MonoBehaviour {
         item.AddComponent<Rigidbody>().velocity = new Vector3(0, 0, -1);
         item.AddComponent<Rock>();
         item.AddComponent<BoxCollider>().isTrigger = true;
+        
 
 
         item.GetComponent<Transform>().localScale = new Vector3(size_x, size_y,size_z);
