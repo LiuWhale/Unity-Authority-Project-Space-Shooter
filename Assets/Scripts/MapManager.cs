@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour {
+
+
+    [HideInInspector]
     //角色
     public GameObject m_Player;
     //background
@@ -16,10 +19,11 @@ public class MapManager : MonoBehaviour {
     private float addTime = 4f;
     private float BG_speed = 0.16f;
 
-    private bool life = true;
-    private bool start = true;
-    private bool gaming;
-    private bool end;
+    [HideInInspector]
+    public bool life = true;
+    public bool start ;
+    public bool gaming= true;
+    public bool end;
 
     //private List<GameObject[]> mapList = new List<GameObject[]>();
 
@@ -53,7 +57,7 @@ public class MapManager : MonoBehaviour {
         GameObject Player = null;
         GameObject Space_BG = null;
         
-        if(start == true)
+        if(gaming)
          {
             //生成角色
             Player = GameObject.Instantiate(m_Player, m_Start_pos, Quaternion.identity) as GameObject;
@@ -61,13 +65,16 @@ public class MapManager : MonoBehaviour {
             Space_BG = GameObject.Instantiate(m_Space_BG, m_Space_pos, Quaternion.Euler(m_Space_rot))as GameObject;
             //Space_BG.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -BG_speed);
             Debug.Log("我出生啦");
-            gaming = true;
-            start = false;
-         }
 
-        if(gaming == true)
+            gaming = false;
+            start = false;
+            end = false;
+         }
+        if(life==false)
         {
-            //
+            end = true;
+            start = false;
+            gaming = false;
         }
 
         if(Time.time>nextTime)
@@ -77,4 +84,6 @@ public class MapManager : MonoBehaviour {
             nextTime += addTime;
         }
     }
+
+
 }

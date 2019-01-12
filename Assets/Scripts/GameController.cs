@@ -42,6 +42,7 @@ public class GameController : MonoBehaviour {
         m_MapManager =GameObject.Find("MapManager").GetComponent<MapManager>();
 
         m_Bolt = Resources.Load("Bolt") as GameObject;
+        m_Bolt.GetComponent<Transform>().localScale = new Vector3(0.5f,0.5f,0.5f);
         
         //获取起始坐标
         m_Player_x = m_MapManager.m_Start_pos.x;
@@ -119,10 +120,17 @@ public class GameController : MonoBehaviour {
             }
     }
 
-    void Update () {
-       
-        
+    void Update () {   
         PlayerMove();      
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag =="Rock")
+        {
+            m_MapManager.life = false;
+            GameObject.Destroy(gameObject);
+        }
     }
 }
 
